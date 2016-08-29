@@ -26,11 +26,11 @@ task wrapper(type: Wrapper) {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compile 'org.springframework.data:spring-data-mongodb'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
 
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.6'
     compile 'commons-logging:commons-logging'
+    compile 'com.google.guava:guava:latest.integration'
     compile 'org.hibernate:hibernate-validator:5.2.1.Final'
     compile 'javax.el:javax.el-api:3.0.0'
     compile 'com.h2database:h2'

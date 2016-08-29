@@ -6,7 +6,6 @@ import nz.co.rroques.web.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +16,6 @@ public class EventsController {
 
     private final EventGateway eventGateway;
 
-    /**
-     * TODO inject profile based implementation of EventGateway
-     */
     @Autowired
     public EventsController(EventGateway eventGateway) {
         this.eventGateway = eventGateway;
@@ -32,12 +28,12 @@ public class EventsController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ResponseBody
-    public ResponseEntity<Void> create(@Valid @RequestBody EventView eventView, BindingResult results) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@Valid @RequestBody EventView eventView, BindingResult results) {
         if (results.hasErrors()) {
             throw new ValidationException(results);
         }
         eventGateway.saveEvent(new Event(eventView.getName()));
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
 }
