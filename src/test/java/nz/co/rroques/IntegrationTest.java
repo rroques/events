@@ -40,7 +40,7 @@ public class IntegrationTest {
                         .content("{ \"name\": \"myName\" }")
                         .contentType(MediaType.APPLICATION_JSON)
         )
-                .andExpect(status().isAccepted());
+                .andExpect(status().isCreated());
     }
 
     @Test

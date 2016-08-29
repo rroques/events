@@ -28,6 +28,11 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
 
+    compile 'org.springframework.cloud:spring-cloud-spring-service-connector'
+    compile 'org.springframework.cloud:spring-cloud-cloudfoundry-connector'
+    compile 'org.springframework.cloud:spring-cloud-heroku-connector'
+
+
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.6'
     compile 'commons-logging:commons-logging'
     compile 'com.google.guava:guava:latest.integration'
