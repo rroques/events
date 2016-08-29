@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 @Configuration
 @Profile("cloud")
 public class CloudConfiguration extends AbstractCloudConfig {
-    
+
         @Bean
         public DataSource dataSource() {
             return cloud().getSingletonServiceConnector(DataSource.class, null);

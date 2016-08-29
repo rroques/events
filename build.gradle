@@ -39,6 +39,7 @@ dependencies {
     compile 'org.hibernate:hibernate-validator:5.2.1.Final'
     compile 'javax.el:javax.el-api:3.0.0'
     compile 'com.h2database:h2'
+    compile 'org.flywaydb:flyway-core'
 
     runtime 'mysql:mysql-connector-java'
     runtime 'postgresql:postgresql:9.1-901-1.jdbc4'
