@@ -1,6 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'nebula.nebula-release'
 
 buildscript {
     repositories {
@@ -9,6 +10,7 @@ buildscript {
     dependencies {
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE'
         classpath 'se.transmode.gradle:gradle-docker:1.2'
+        classpath 'com.netflix.nebula:nebula-release-plugin:4.1.0'
     }
 }
 
