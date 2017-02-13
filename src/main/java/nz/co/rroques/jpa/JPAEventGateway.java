@@ -1,7 +1,7 @@
-package nz.co.rroques.gateway.jpa;
+package nz.co.rroques.jpa;
 
 import nz.co.rroques.domain.Event;
-import nz.co.rroques.gateway.EventGateway;
+import nz.co.rroques.domain.EventGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,4 @@
-package nz.co.rroques.gateway;
-
-import nz.co.rroques.domain.Event;
+package nz.co.rroques.domain;
 
 public interface EventGateway {
 

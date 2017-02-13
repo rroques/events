@@ -1,7 +1,7 @@
 package nz.co.rroques.web;
 
 import nz.co.rroques.domain.Event;
-import nz.co.rroques.gateway.EventGateway;
+import nz.co.rroques.domain.EventGateway;
 import nz.co.rroques.web.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

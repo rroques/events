@@ -1,17 +1,9 @@
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
-apply plugin: 'nebula.nebula-release'
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE'
-        classpath 'se.transmode.gradle:gradle-docker:1.2'
-        classpath 'com.netflix.nebula:nebula-release-plugin:4.1.0'
-    }
+plugins {
+    id 'java'
+    //id 'findbugs'
+    id 'org.springframework.boot' version '1.5.1.RELEASE'
+    //id 'nebula.plugin-plugin' version '5.1.0'
+    //id 'nebula.lint' version '6.3.0'
 }
 
 sourceCompatibility = 1.8
@@ -22,7 +14,7 @@ repositories {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.1'
+    gradleVersion = '3.3'
 }
 
 dependencies {
@@ -34,18 +26,14 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-cloudfoundry-connector'
     compile 'org.springframework.cloud:spring-cloud-heroku-connector'
 
-
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.6'
-    compile 'commons-logging:commons-logging'
     compile 'com.google.guava:guava:latest.integration'
     compile 'org.hibernate:hibernate-validator:5.2.1.Final'
     compile 'javax.el:javax.el-api:3.0.0'
-    compile 'com.h2database:h2'
+    testCompile 'com.h2database:h2'
     compile 'org.flywaydb:flyway-core'
 
-    runtime 'mysql:mysql-connector-java'
     runtime 'postgresql:postgresql:9.1-901-1.jdbc4'
-
     runtime 'javax.servlet:javax.servlet-api:3.1.0'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
@@ -56,19 +44,4 @@ dependencies {
 
 bootRun {
     addResources = true
-}
-
-group 'rroques'
-
-apply plugin: 'docker'
-
-task buildDocker(type: Docker, dependsOn: build) {
-    applicationName = jar.baseName
-    dockerfile = file('src/main/docker/Dockerfile')
-    doFirst {
-        copy {
-            from jar
-            into stageDir
-        }
-    }
 }

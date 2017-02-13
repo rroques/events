@@ -4,7 +4,17 @@
 [![Dependency Status](https://dependencyci.com/github/rroques/events/badge)](https://dependencyci.com/github/rroques/events)
 [![Issue Count](https://codeclimate.com/github/rroques/events/badges/issue_count.svg)](https://codeclimate.com/github/rroques/events)
 
-A sample Spring Boot application to serve as bait for the could.
+A sample Spring Boot application to serve as bait for the cloud.
+
+# Local run
+
+```
+docker-compose up
+
+./gradlew bootRun
+
+http POST http://localhost:8080/events name=myEventName
+```
 
 # CloudFoundry
 
