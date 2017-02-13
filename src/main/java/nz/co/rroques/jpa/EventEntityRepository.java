@@ -1,4 +1,4 @@
-package nz.co.rroques.gateway.jpa;
+package nz.co.rroques.jpa;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

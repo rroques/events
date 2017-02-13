@@ -1,4 +1,4 @@
-package nz.co.rroques.gateway.jpa;
+package nz.co.rroques.jpa;
 
 import javax.persistence.*;
 
@@ -7,7 +7,8 @@ import javax.persistence.*;
 public class EventEntity {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "event_id_sequence")
+    @SequenceGenerator(name="event_id_sequence", sequenceName="event_id_sequence", allocationSize=1)
     private long id;
 
     @Column

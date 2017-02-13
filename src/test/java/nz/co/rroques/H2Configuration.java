@@ -1,4 +1,4 @@
-package nz.co.rroques.config;
+package nz.co.rroques;
 
 import org.h2.server.web.WebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
