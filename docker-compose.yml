@@ -1,14 +1,30 @@
-data:
-  restart: always
-  image: postgres:latest
-  volumes:
-    - /var/lib/postgresql
-  command: "true"
+version: '2'
+services:
+  data:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - /var/lib/postgresql
+    command: "true"
 
-postgres:
-  restart: always
-  build: docker/database
-  volumes_from:
-    - data
-  ports:
-    - "5432:5432"
+  postgres:
+    restart: always
+    build: docker/database
+    volumes_from:
+      - data
+    ports:
+      - "5432:5432"
+
+  app:
+    restart: always
+    build: build/libs
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_DB=events
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - "8080:8080"

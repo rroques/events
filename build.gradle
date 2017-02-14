@@ -1,9 +1,6 @@
 plugins {
     id 'java'
-    //id 'findbugs'
     id 'org.springframework.boot' version '1.5.1.RELEASE'
-    //id 'nebula.plugin-plugin' version '5.1.0'
-    //id 'nebula.lint' version '6.3.0'
 }
 
 sourceCompatibility = 1.8
@@ -45,3 +42,10 @@ dependencies {
 bootRun {
     addResources = true
 }
+
+task buildDockerfile(type: Copy) {
+    from 'docker/app/Dockerfile'
+    into 'build/libs'
+}
+
+build.finalizedBy buildDockerfile
