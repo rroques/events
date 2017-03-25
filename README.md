@@ -9,12 +9,12 @@ A sample Spring Boot application to serve as bait for the cloud.
 # Local run
 
 ```
-./gradlew bootRun
-
 docker-compose build
 docker-compose up
 
 http POST http://localhost:8080/events name=myEventName
+http --json GET http://localhost:8080/events
+http --json GET http://localhost:8080/events?page=0&size=10
 ```
 
 # CloudFoundry

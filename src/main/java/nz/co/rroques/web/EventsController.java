@@ -1,9 +1,11 @@
 package nz.co.rroques.web;
 
 import nz.co.rroques.domain.Event;
-import nz.co.rroques.domain.EventGateway;
+import nz.co.rroques.jpa.EventRepository;
 import nz.co.rroques.web.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
@@ -14,11 +16,11 @@ import javax.validation.Valid;
 @RestController
 public class EventsController {
 
-    private final EventGateway eventGateway;
+    private final EventRepository eventRepository;
 
     @Autowired
-    public EventsController(EventGateway eventGateway) {
-        this.eventGateway = eventGateway;
+    public EventsController(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
     }
 
     @RequestMapping(
@@ -29,11 +31,36 @@ public class EventsController {
     )
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@Valid @RequestBody EventView eventView, BindingResult results) {
+    public Event create(@Valid @RequestBody Event event, BindingResult results) {
         if (results.hasErrors()) {
             throw new ValidationException(results);
         }
-        eventGateway.saveEvent(new Event(eventView.getName()));
+        return eventRepository.save(event);
+    }
+
+    @RequestMapping(
+            name = "/events",
+            params = {"size", "page"},
+            method = RequestMethod.GET,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public Page<Event> loadEvents(@RequestParam("size") int size, @RequestParam("page") int page) {
+        return eventRepository.findAll(new PageRequest(page, size));
+    }
+
+    @RequestMapping(
+            name = "/events",
+            method = RequestMethod.GET,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public Iterable<Event> loadEvents() {
+        return eventRepository.findAll();
     }
 
 }

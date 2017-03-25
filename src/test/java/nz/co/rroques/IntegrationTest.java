@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,8 +40,7 @@ public class IntegrationTest {
                 post("/events")
                         .content("{ \"name\": \"myName\" }")
                         .contentType(MediaType.APPLICATION_JSON)
-        )
-                .andExpect(status().isCreated());
+        ).andDo(MockMvcResultHandlers.print()).andExpect(status().isCreated());
     }
 
     @Test
@@ -51,4 +51,23 @@ public class IntegrationTest {
                         .contentType(MediaType.APPLICATION_JSON)
         ).andDo(MockMvcResultHandlers.print()).andExpect(status().isBadRequest());
     }
+
+    @Test
+    public void shouldGetEventsPaginated() throws Exception {
+        mockMvc.perform(
+                get("/events")
+                        .param("page", "1")
+                        .param("size", "10")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andDo(MockMvcResultHandlers.print()).andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldGetAllEvents() throws Exception {
+        mockMvc.perform(
+                get("/events")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andDo(MockMvcResultHandlers.print()).andExpect(status().isOk());
+    }
+
 }
