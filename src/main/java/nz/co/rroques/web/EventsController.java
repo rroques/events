@@ -5,7 +5,7 @@ import nz.co.rroques.jpa.EventRepository;
 import nz.co.rroques.web.exception.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
@@ -47,8 +47,8 @@ public class EventsController {
     )
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public Page<Event> loadEvents(Pageable pageable) {
-        return eventRepository.findAll(pageable);
+    public Page<Event> loadEvents(@RequestParam("size") int size, @RequestParam("page") int page) {
+        return eventRepository.findAll(new PageRequest(page, size));
     }
 
     @RequestMapping(
