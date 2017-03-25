@@ -42,3 +42,10 @@ dependencies {
 bootRun {
     addResources = true
 }
+
+task buildDockerfile(type: Copy) {
+    from 'docker/app/Dockerfile'
+    into 'build/libs'
+}
+
+build.finalizedBy buildDockerfile

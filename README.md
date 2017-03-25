@@ -9,9 +9,10 @@ A sample Spring Boot application to serve as bait for the cloud.
 # Local run
 
 ```
-docker-compose up
-
 ./gradlew bootRun
+
+docker-compose build
+docker-compose up
 
 http POST http://localhost:8080/events name=myEventName
 ```
