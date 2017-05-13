@@ -24,5 +24,4 @@ cf push -p build/libs/events.jar
 
 cf create-service elephantsql turtle events-postgres
 cf bind-service events events-postgres
-
 ```
