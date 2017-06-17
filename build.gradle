@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'com.gradle.build-scan' version '1.7.4'
-    id 'org.springframework.boot' version '1.5.1.RELEASE'
+    id 'com.gradle.build-scan' version '1.8'
+    id 'org.springframework.boot' version '1.5.4.RELEASE'
 }
 
 buildScan {
@@ -31,20 +31,16 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-cloudfoundry-connector'
     compile 'org.springframework.cloud:spring-cloud-heroku-connector'
 
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.4.6'
-    compile 'com.google.guava:guava:latest.integration'
     compile 'org.hibernate:hibernate-validator:5.2.1.Final'
+    compile 'com.google.guava:guava:latest.integration'
     compile 'javax.el:javax.el-api:3.0.0'
     compile 'org.flywaydb:flyway-core'
 
     runtime 'postgresql:postgresql:9.1-901-1.jdbc4'
     runtime 'javax.servlet:javax.servlet-api:3.1.0'
 
-    testCompile 'com.h2database:h2'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
-    testCompile 'junit:junit:4.+'
-    testCompile 'org.mockito:mockito-all:latest.integration'
-    testCompile 'org.assertj:assertj-core:latest.integration'
+    testCompile 'com.h2database:h2'
 }
 
 bootRun {

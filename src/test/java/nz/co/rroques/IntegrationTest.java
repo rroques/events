@@ -44,10 +44,18 @@ public class IntegrationTest {
     }
 
     @Test
-    public void shouldFailEmptyName() throws Exception {
+    public void shouldFailCreateEventWithEmptyName() throws Exception {
         mockMvc.perform(
                 post("/events")
                         .content("{ \"name\": \"\" }")
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andDo(MockMvcResultHandlers.print()).andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void shouldFailCreateEventWithNullName() throws Exception {
+        mockMvc.perform(
+                post("/events")
                         .contentType(MediaType.APPLICATION_JSON)
         ).andDo(MockMvcResultHandlers.print()).andExpect(status().isBadRequest());
     }
