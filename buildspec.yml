@@ -8,6 +8,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - ls -al build/libs
 artifacts:
   files:
     - build/libs/events.jar
