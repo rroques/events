@@ -1,8 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.5.RELEASE"
+    }
+}
+
 plugins {
     id 'java'
-    id 'com.gradle.build-scan' version '1.8'
-    id 'org.springframework.boot' version '1.5.4.RELEASE'
+    id 'com.gradle.build-scan' version '1.12.1'
+    id 'org.springframework.boot' version '2.0.2.RELEASE'
 }
+
+apply plugin: "io.spring.dependency-management"
 
 buildScan {
     licenseAgreementUrl = 'https://gradle.com/terms-of-service'
@@ -15,11 +26,12 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.0'
+    gradleVersion = '4.7'
 }
 
 dependencies {
@@ -41,10 +53,6 @@ dependencies {
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     testCompile 'com.h2database:h2'
-}
-
-bootRun {
-    addResources = true
 }
 
 task buildDockerfile(type: Copy) {
